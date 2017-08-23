@@ -9,15 +9,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var parcel = require('./routes/parcel');
 
+var ownerinfo = require('./routes/ownerinfo');
+
 var app = express();
-
-
-var qr_image = require('qr-image');  
-app.get('/qrcode',function(req,res){  
-    var temp_qrcode = qr_image.image('http://www.baidu.com');  
-    res.type('png');  
-    temp_qrcode.pipe(res);  
-})  
 
 
 // view engine setup
@@ -35,6 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/parcel', parcel);
+
+app.use('/ownerinfo',ownerinfo);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

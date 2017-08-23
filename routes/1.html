@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function Sjk() {
+		    getVal = function () { console.log(1); };
+		    return this;
+		}
+		Sjk.getVal = function () { console.log(2);};
+		Sjk.prototype.getVal = function () { console.log(3);};
+		var getVal = function () { console.log(4);};
+		function getVal() { console.log(5);}
+		Sjk.getVal();
+getVal();
+Sjk().getVal();
+getVal();
+new Sjk().getVal();
+	</script>
+</body>
+</html>
