@@ -5,8 +5,42 @@
 	<title>标题</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
+	<script src="jquery.min.js"></script>
 </head>
 <body>
-	<img src='http://localhost/qrcode'>
+	<input type="text" placeholder="用户名" class="usernanme"><br>
+	<input type="text" placeholder="快递类型" class="messtype"><br>
+	<input type="text" placeholder="编码" class="code"><br>
+	<input type="text" placeholder="手机号" class="phone"><br>
+	<input type="text" placeholder="住址" class="address"><br>
+	<input type="text" placeholder="是否领取" class="get"><br>
+	<button class="btn">提交</button>
+	<script>
+	
+
+	$('.btn').click(function(){
+		var username=$('.usernanme').val();
+		var messtype=$('messtype').val();
+		var code=$('code').val();
+		var phone=$('phone').val();
+		var address=$('address').val();
+		$.ajax({
+	        type:"post",
+	        url:"http://localhost:8005/parcel/par",
+	        async:true,
+	        data:{
+	        	username:username,
+	        	messtype:messtype,
+	        	code:code,
+	        	phone:phone,
+	        	address:address
+	        },
+	        success:function(e){
+	        	console.log(e)
+	        	document.write(e)	          
+	        }     	         
+	    })	   
+	}) 
+	</script>
 </body>
 </html>
