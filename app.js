@@ -27,11 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-<<<<<<< HEAD
-=======
 app.use('/parcel', parcel);
-
->>>>>>> origin/master
 app.use('/ownerinfo',ownerinfo);
 app.use('/notice',notice);
 // catch 404 and forward to error handler
