@@ -11,7 +11,6 @@ var pool=mysql.createPool({
 });
 
 router.post("/par",function(req,res){
-	// var id=req.body["id"];
 	var name=req.body["username"];
 	var type=req.body["messtype"];
 	var code=req.body["code"];
@@ -19,11 +18,22 @@ router.post("/par",function(req,res){
 	var address=req.body["address"];
 
 	res.header("Access-Control-Allow-Origin", "*");
-		pool.query(`insert into parcel (username) values ('${name}')`,function(err,rows,fields){
-		if(err) throw err;
-		res.send(rows);
-	});
+		pool.query(`insert into parcel (username,messtype,code,phone,address) values ('${name}','${type}','${code}','${phone}','${address}')`,function(err,rows,fields){
+			if(err) throw err;
+			if(rows){
+				res.send('success')
+			}
 
-});
+		})
+})
+
+router.get("/parcel",function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+		pool.query('select * from parcel',function(err,rows,fields){
+			if(err) throw err;
+			res.send(rows)
+	
+		})
+})
 module.exports=router;
 
