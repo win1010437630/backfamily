@@ -26,17 +26,32 @@ router.get('/all',function(req,res){
 		res.send(rows);
 	})
 });*/
-router.post('/add',function(req,res){
+/*router.post('/add',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
 	var id=req.body['id'];
 	var title=req.body['title'];
 	var from=req.body['from'];
+	var to_who=req.body['to_who'];
 	var detail=req.body['detail'];
-	pool.query(`update notice set title='${title}',from='${from}',detail='${detail}' where id='${id}'`,function(err,rows){
-		if(err) throw err;
-		console.log(rows)
-		res.send('success')
-	})
+	var time=req.body['time'];
+	pool.query(`insert into notice(title,from,to_who,detail) values('${title}','${from}','${to_who}','${detail}')`,function(err,rows){
+		if (err) throw err;
+		if(rows){
+			res.send('上传成功')
+		}			
+	})	
+});*/
+router.post('/add',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	var id=req.body['id'];
+	var title=req.body['title'];
+	var to_who=req.body['to_who'];
+	var detail=req.body['detail'];
+	pool.query(`insert into notice(title,to_who,detail) values('${title}','${to_who}','${detail}')`,function(err,rows){
+		if (err) throw err;
+		if(rows){
+			res.send('上传成功')
+		}			
+	})	
 });
-
 module.exports = router;
