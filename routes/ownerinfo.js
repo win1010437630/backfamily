@@ -24,10 +24,32 @@ router.post('/owneri',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
 	pool.query(`select * from ownerinform where id='${id}'`,function(err,rows){
 		if(err) throw err;
+		res.send(rows);
+	})
+});
+
+router.post('/pass',function(req,res){
+	var id=req.body['id'];
+	var password=req.body['password'];
+	res.header("Access-Control-Allow-Origin", "*");
+	pool.query(`update ownerinform set password='${password}' where id='${id}'`,function(err,rows){
+		if(err) throw err;
+		console.log(password)
+		res.send(rows);
+	})
+});
+router.post('/is',function(req,res){
+	var id=req.body['id'];
+	var flag=req.body['flag'];
+	res.header("Access-Control-Allow-Origin", "*");
+	pool.query(`update ownerinform set flag='${flag}' where id='${id}'`,function(err,rows){
+		if(err) throw err;
 		console.log(id)
 		res.send(rows);
 	})
 });
+
+
 router.post('/setpsd',function(req,res){
 	var id=req.body['id'];
 	var psd=req.body['psd'];
