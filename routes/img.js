@@ -78,4 +78,54 @@ router.get('/photo',function(req,res){
 		res.send(rows);
 	})
 })
+
+router.post('/detail',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	var id=req.body['id'];
+	pool.query(`select * from forum where id='${id}'`,function(err,rows){
+		if(err) throw err;
+		console.log(id)
+		res.send(rows);
+	})
+});
+//点赞huode
+router.post('/getzan',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	pool.query('select * from forum',function(err,rows){
+		if(err) throw err;
+		res.send(rows);
+	})
+});
+//点赞+
+router.post('/zan',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	var id=req.body['id'];
+	var icon=req.body['icon'];
+	pool.query(`update forum set icon='${icon}' where id='${id}'`,function(err,rows){
+		if(err) throw err;
+		console.log(rows)
+		res.send('success')
+	})
+});
+/*社区评论插入数据库*/
+router.post('/pinglun',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	var uid=req.body['uid'];
+	var review=req.body["review"];
+	var uuid=req.body['uuid'];
+	var name=req.body['name'];
+	pool.query(`insert into review(review,uid,uuid,name) values('${review}','${uid}','${uuid}','${name}')`,function(err,rows){
+		if(err) throw err;
+		console.log(uid)
+		res.send(rows);
+	})
+});
+router.post('/getreview',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	var uid=req.body['uid'];
+	pool.query(`select * from review where uid='${uid}'`,function(err,rows){
+		if(err) throw err;
+		res.send(rows);
+	})
+});
 module.exports=router;

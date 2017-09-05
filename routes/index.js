@@ -7,7 +7,7 @@ var pool=mysql.createPool({
 	host:'127.0.0.1',
 	user:'root',
 	password:'PARIS9797',
-	database:'live_here',
+	database:'livehere',
 	port:3306
 });
 const add='192.168.43.16';
