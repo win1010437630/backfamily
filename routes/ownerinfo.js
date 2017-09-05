@@ -11,7 +11,7 @@ var pool=mysql.createPool({
 	database:'livehere',
 	port:3306
 })
-var add='192.168.43.189';
+var add='localhost';
 router.get('/oi',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
 	pool.query('select * from ownerinform',function(err,rows){
