@@ -33,16 +33,10 @@ router.get("/service",function(req,res){
 router.post("/ser",function(req,res){
 	var user=req.body["user"];
 	var content=req.body["content"];
-	var order=[];
 	res.header("Access-Control-Allow-Origin", "*");
-		pool.query(`insert into parcel (user,content) values ('${user}','${content}')`,function(err,rows,fields){
-			pool.query('select * from service',function(err,rows,fields){
+		pool.query(`insert into service (user,content) values ('${user}','${content}')`,function(err,rows,fields){
 			if(err) throw err;
-			for(var i in rows){
-				order.unshift(rows[i])
-			}
-			res.send(order)	
-		})
+			res.send(rows)
 	})
 })
 
