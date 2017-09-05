@@ -8,7 +8,11 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var parcel = require('./routes/parcel');
+
+var img = require('./routes/img');
+
 var service = require('./routes/service');
+
 var ownerinfo = require('./routes/ownerinfo');
 var notice = require('./routes/notice');
 var app = express();
@@ -29,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/parcel', parcel);
+app.use('/photo', img);
 app.use('/service', service);
 app.use('/ownerinfo',ownerinfo);
 app.use('/notice',notice);
